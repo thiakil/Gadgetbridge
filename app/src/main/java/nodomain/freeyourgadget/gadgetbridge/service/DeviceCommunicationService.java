@@ -51,7 +51,6 @@ import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.R;
 import nodomain.freeyourgadget.gadgetbridge.activities.HeartRateUtils;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.HuamiCoordinator;
 import nodomain.freeyourgadget.gadgetbridge.externalevents.AlarmClockReceiver;
 import nodomain.freeyourgadget.gadgetbridge.externalevents.AlarmReceiver;
 import nodomain.freeyourgadget.gadgetbridge.externalevents.BluetoothConnectReceiver;
@@ -371,20 +370,6 @@ public class DeviceCommunicationService extends Service implements SharedPrefere
             return text;
 
         if (!mCoordinator.supportsUnicodeEmojis()) {
-
-            // use custom font for emoji, if it is supported and enabled
-            if (mCoordinator.supportsCustomFont()) {
-                switch (mCoordinator.getDeviceType()) {
-                    case AMAZFITBIP:
-                        if (((HuamiCoordinator)mCoordinator).getUseCustomFont(mGBDevice.getAddress()))
-                            return StringUtils.toCustomFont(text);
-                        break;
-                    // TODO: implement for Amazfit Cor
-                    default:
-                        break;
-                }
-            }
-
             return EmojiConverter.convertUnicodeEmojiToAscii(text, getApplicationContext());
         }
 

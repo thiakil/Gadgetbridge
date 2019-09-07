@@ -54,8 +54,6 @@ import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.R;
 import nodomain.freeyourgadget.gadgetbridge.database.PeriodicExporter;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceManager;
-import nodomain.freeyourgadget.gadgetbridge.devices.miband.MiBandPreferencesActivity;
-import nodomain.freeyourgadget.gadgetbridge.devices.zetime.ZeTimePreferenceActivity;
 import nodomain.freeyourgadget.gadgetbridge.model.CannedMessagesSpec;
 import nodomain.freeyourgadget.gadgetbridge.util.AndroidUtils;
 import nodomain.freeyourgadget.gadgetbridge.util.FileUtils;
@@ -92,23 +90,6 @@ public class SettingsActivity extends AbstractSettingsActivity {
         pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             public boolean onPreferenceClick(Preference preference) {
                 Intent enableIntent = new Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS");
-                startActivity(enableIntent);
-                return true;
-            }
-        });
-        pref = findPreference("pref_key_miband");
-        pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                Intent enableIntent = new Intent(SettingsActivity.this, MiBandPreferencesActivity.class);
-                startActivity(enableIntent);
-                return true;
-            }
-        });
-
-        pref = findPreference("pref_key_zetime");
-        pref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
-            public boolean onPreferenceClick(Preference preference) {
-                Intent enableIntent = new Intent(SettingsActivity.this, ZeTimePreferenceActivity.class);
                 startActivity(enableIntent);
                 return true;
             }

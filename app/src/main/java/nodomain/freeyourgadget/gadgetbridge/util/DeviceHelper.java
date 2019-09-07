@@ -41,34 +41,7 @@ import nodomain.freeyourgadget.gadgetbridge.database.DBHandler;
 import nodomain.freeyourgadget.gadgetbridge.database.DBHelper;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceCoordinator;
 import nodomain.freeyourgadget.gadgetbridge.devices.UnknownDeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.casiogb6900.CasioGB6900DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.hplus.EXRIZUK8Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.hplus.HPlusCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.hplus.MakibesF68Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.hplus.Q8Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.amazfitbip.AmazfitBipCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.amazfitcor.AmazfitCorCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.amazfitcor2.AmazfitCor2Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.miband2.MiBand2Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.miband2.MiBand2HRXCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.miband3.MiBand3Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.huami.miband4.MiBand4Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.id115.ID115Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.jyou.BFH16DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.jyou.TeclastH30Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.liveview.LiveviewCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.miband.MiBandConst;
-import nodomain.freeyourgadget.gadgetbridge.devices.miband.MiBandCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.mijia_lywsd02.MijiaLywsd02Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.miscale2.MiScale2DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.no1f1.No1F1Coordinator;
 import nodomain.freeyourgadget.gadgetbridge.devices.pebble.PebbleCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.roidmi.Roidmi1Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.roidmi.Roidmi3Coordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.vibratissimo.VibratissimoCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.watch9.Watch9DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.xwatch.XWatchCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.zetime.ZeTimeCoordinator;
 import nodomain.freeyourgadget.gadgetbridge.entities.Device;
 import nodomain.freeyourgadget.gadgetbridge.entities.DeviceAttributes;
 import nodomain.freeyourgadget.gadgetbridge.impl.GBDevice;
@@ -141,11 +114,6 @@ public class DeviceHelper {
         availableDevices.addAll(dbDevices);
 
         Prefs prefs = GBApplication.getPrefs();
-        String miAddr = prefs.getString(MiBandConst.PREF_MIBAND_ADDRESS, "");
-        if (miAddr.length() > 0) {
-            GBDevice miDevice = new GBDevice(miAddr, "MI", DeviceType.MIBAND);
-            availableDevices.add(miDevice);
-        }
 
         String pebbleEmuAddr = prefs.getString("pebble_emu_addr", "");
         String pebbleEmuPort = prefs.getString("pebble_emu_port", "");
@@ -201,33 +169,7 @@ public class DeviceHelper {
 
     private List<DeviceCoordinator> createCoordinators() {
         List<DeviceCoordinator> result = new ArrayList<>();
-        result.add(new MiScale2DeviceCoordinator()); // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new AmazfitBipCoordinator()); // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new AmazfitCorCoordinator()); // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new AmazfitCor2Coordinator()); // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new MiBand3Coordinator());  // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new MiBand4Coordinator());  // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new MiBand2HRXCoordinator()); // Note: must come before MiBand2 because detection is hacky, atm
-        result.add(new MiBand2Coordinator()); // Note: MiBand2 must come before MiBand because detection is hacky, atm
-        result.add(new MiBandCoordinator());
         result.add(new PebbleCoordinator());
-        result.add(new VibratissimoCoordinator());
-        result.add(new LiveviewCoordinator());
-        result.add(new HPlusCoordinator());
-        result.add(new No1F1Coordinator());
-        result.add(new MakibesF68Coordinator());
-        result.add(new Q8Coordinator());
-        result.add(new EXRIZUK8Coordinator());
-        result.add(new TeclastH30Coordinator());
-        result.add(new XWatchCoordinator());
-        result.add(new ZeTimeCoordinator());
-        result.add(new ID115Coordinator());
-        result.add(new Watch9DeviceCoordinator());
-        result.add(new Roidmi1Coordinator());
-        result.add(new Roidmi3Coordinator());
-        result.add(new CasioGB6900DeviceCoordinator());
-        result.add(new BFH16DeviceCoordinator());
-        result.add(new MijiaLywsd02Coordinator());
 
         return result;
     }

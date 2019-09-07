@@ -28,7 +28,6 @@ import androidx.annotation.NonNull;
 import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.database.DBHandler;
 import nodomain.freeyourgadget.gadgetbridge.database.DBHelper;
-import nodomain.freeyourgadget.gadgetbridge.devices.miband.MiBandConst;
 import nodomain.freeyourgadget.gadgetbridge.entities.Alarm;
 import nodomain.freeyourgadget.gadgetbridge.entities.DaoSession;
 import nodomain.freeyourgadget.gadgetbridge.entities.Device;
@@ -100,7 +99,7 @@ public class AlarmUtils {
     @NonNull
     public static List<Alarm> readAlarmsFromPrefs(GBDevice gbDevice) {
         Prefs prefs = GBApplication.getPrefs();
-        Set<String> stringAlarms = prefs.getStringSet(MiBandConst.PREF_MIBAND_ALARMS, new HashSet<String>());
+        Set<String> stringAlarms = new HashSet<String>();
         List<Alarm> alarms = new ArrayList<>(stringAlarms.size());
 
         try (DBHandler db = GBApplication.acquireDB()) {

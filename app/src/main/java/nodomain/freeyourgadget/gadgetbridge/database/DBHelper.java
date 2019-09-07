@@ -44,7 +44,6 @@ import de.greenrobot.dao.query.QueryBuilder;
 import de.greenrobot.dao.query.WhereCondition;
 import nodomain.freeyourgadget.gadgetbridge.GBApplication;
 import nodomain.freeyourgadget.gadgetbridge.devices.DeviceCoordinator;
-import nodomain.freeyourgadget.gadgetbridge.devices.miband.MiBandConst;
 import nodomain.freeyourgadget.gadgetbridge.entities.ActivityDescription;
 import nodomain.freeyourgadget.gadgetbridge.entities.ActivityDescriptionDao;
 import nodomain.freeyourgadget.gadgetbridge.entities.Alarm;
@@ -584,7 +583,7 @@ public class DBHelper {
         DeviceCoordinator coordinator = DeviceHelper.getInstance().getCoordinator(gbDevice);
         Prefs prefs = GBApplication.getPrefs();
         // TODO: this alarm reservation is a device dependent detail
-        int reservedSlots = prefs.getInt(MiBandConst.PREF_MIBAND_RESERVE_ALARM_FOR_CALENDAR, 0);
+        int reservedSlots = 0;
         int alarmSlots = coordinator.getAlarmSlotCount();
 
         try (DBHandler db = GBApplication.acquireDB()) {
